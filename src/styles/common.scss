@@ -1,0 +1,32 @@
+@import-normalize;
+
+@import "fonts";
+@import "variables";
+
+html {
+  font-size: 1rem;
+  scroll-behavior: smooth;
+  height: 100%;
+  min-height: 100vh;
+}
+body {
+  font-feature-settings: "kern";
+  font-kerning: normal;
+  font-family: $font-default;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  min-width: 320px;
+  font-weight: 400;
+  line-height: 20px;
+  background-color: #fff;
+  color: #282828;
+  cursor: url("../img/cursor.webp"), auto;
+  cursor: -webkit-image-set(url("../img/cursor.webp") 1x, url("../img/cursor.webp") 2x), auto;
+}
+h1 {
+  @include h1();
+}

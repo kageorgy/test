@@ -1,0 +1,32 @@
+// THIS FILE WILL BE AUTOMATICALLY IMPORT TO EVERY ONE SCSS FILE,
+// YOU CAN USE ALL FROM HERE WITHOUT IMPORTING
+
+// DO NOT WRITE CLASSES HERE!
+@import "mixins";
+
+// Grid Variables
+//$containerWidth: 1600px;
+
+// Transitions & Animations
+$transitionBase: 0.3s;
+$animationEasing: cubic-bezier(0.25, 0.1, 0.25, 1);
+$grid-breakpoints: (
+  xs: 320px,
+  sm: 768px,
+  md: 1024px,
+  lg: 1280px,
+  xl: 1920px
+) !default;
+
+//This variable is used for Typography Mixins works. Redefine this, only in case, if your max-width for adaptives changed.
+$maxWidth: 1920;
+
+//base typography variables, used for Typography Mixins works
+$font-default: "Roboto", sans-serif;
+$baseFontWeight: 400;
+$baseLetterSpacing: 0;
+$baseColor: #000;
+
+//COLORS;
+$black: #000;
+$white: #fff;

@@ -1,5 +1,5 @@
 {
-  "name": "test",
+  "name": "EvidApp",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,14 +8,28 @@
     "@testing-library/user-event": "^13.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "react-scripts": "^5.0.1",
+    "sass": "^1.62.1",
+    "sassdoc": "^2.7.4",
+    "web-vitals": "^2.1.4",
+    "yarn": "^1.22.19"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint:write": "yarn prettier --write src/**/*.{js,scss} && yarn eslint src/ --fix --ext .js,.jsx,.ts,.tsx",
+    "lint:check": "yarn prettier --check src/**/*.{js,scss} && yarn eslint src/ --ext .js,.jsx,.ts,.tsx --color",
+    "prepare": "husky install && chmod +x .husky/pre-commit"
+  },
+  "lint-staged": {
+    "src/**/*.(js|jsx|ts|tsx)": [
+      "prettier --write",
+      "eslint --fix --max-warnings=0"
+    ],
+    "src/**/*.(css|scss|md)": [
+      "prettier --write"
+    ]
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +48,19 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^8.39.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
+    "prettier": "^2.8.8"
   }
 }

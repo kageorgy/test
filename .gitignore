@@ -5,10 +5,11 @@
 /.pnp
 .pnp.js
 /web.config
-
+/package-json.lock/
 # production
 /build/
 /dist/
+/.bin
 
 # misc
 .DS_Store

@@ -1,0 +1,134 @@
+@mixin breakpoint($bp, $rule: min-width) {
+  @media screen and (#{$rule}: map-get($grid-breakpoints, $bp)) {
+    @content;
+  }
+}
+
+@mixin max-breakpoint($bp, $rule: max-width) {
+  @media screen and (#{$rule}: map-get($grid-breakpoints, $bp) - 1) {
+    @content;
+  }
+}
+
+@mixin min-max-breakpoint($min, $max) {
+  @media screen and (min-width: map-get($grid-breakpoints, $min)) and (max-width: map-get($grid-breakpoints, $max) - 1) {
+    @content;
+  }
+}
+
+@mixin container() {
+  margin: 0 auto;
+  max-width: 1820px;
+  padding: 0 16px;
+
+  @include breakpoint(lg) {
+    padding: 0 50px;
+  }
+}
+
+@mixin mask($url) {
+  mask-image: url($url);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+
+// Typography Mixins
+@mixin adaptive-font($mobSize, $pcSize) {
+  $addSize: $pcSize - $mobSize;
+  $maxWidth: $maxWidth - 320;
+  font-size: calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth}));
+}
+
+@mixin adaptive-lineHeight($pcSize, $mobSize) {
+  $addSize: $pcSize - $mobSize;
+  $maxWidth: $maxWidth - 320;
+  line-height: calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth}));
+}
+/// Униварсальный mixin для заголовка h1
+/// {
+/// @param {string} $fontFamily
+///   Принимает значение для свойства font-family.
+///   Для переопеределения использовать переменные из /variables.scss
+///   По умолчанию имеет значение — $font-default.
+/// @param {string} $fontWeight
+///   Принимает значение для свойства font-weight
+///   По умолчанию имеет значение — $baseFontWeight.
+/// @param {string} $letterSpacing
+///   Принимает значение для свойства letter-spacingm
+///   По умолчанию имеет значение — $baseLetterSpacing
+/// @param {string} $color
+///   Принимает значение для свойства color
+///   Для переопеределения использовать переменные из /variables.scss
+///   По умолчанию имеет значение — $baseColor
+/// }
+@mixin h1(
+  $fontFamily: $font-default,
+  $fontWeight: $baseFontWeight,
+  $letterSpacing: $baseLetterSpacing,
+  $color: $baseColor
+) {
+  font-family: $fontFamily;
+  font-weight: $fontWeight;
+  letter-spacing: $letterSpacing;
+  @include adaptive-font(16, 89);
+  @include adaptive-lineHeight(22, 91);
+  color: $color;
+}
+
+@mixin text($color: rgba(var(--backDarkColor), 1)) {
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: calc(34px * var(--line-height-multiplier));
+  color: $color;
+  margin-bottom: 22px;
+
+  @include breakpoint(sm) {
+    font-size: 1.875rem;
+    line-height: 42px;
+    margin-bottom: 30px;
+  }
+
+  @include breakpoint(md) {
+    margin-bottom: 32px;
+    max-width: calc(100% - 200px);
+  }
+}
+
+// Others
+@mixin hideScrollbar() {
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    background: transparent;
+    display: none;
+  }
+}
+
+@mixin textEllipsis($linesCount) {
+  @if $linesCount >0 {
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $linesCount;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+  }
+}
+
+@mixin iconContainer($size: 24px, $height: $size) {
+  width: $size;
+  height: $height;
+  min-width: $size;
+  max-width: $size;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin hovering {
+  @media (hover), (min-width: 0\0), (min-device-pixel-ratio: 0) {
+    @content;
+  }
+}
