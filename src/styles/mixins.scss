@@ -45,14 +45,6 @@
 @mixin h1(
   $fontFamily: $font-default,
   $fontWeight: $baseFontWeight,
-  $fontSizes: (
-    $mobFontSize,
-    $pcFontSize
-  ),
-  $lineHeights: (
-    $mobLineHeight,
-    $pcLineHeight
-  ),
   $letterSpacing: $baseLetterSpacing,
   $color: $baseColor
 ) {
@@ -60,8 +52,8 @@
   font-weight: $fontWeight;
   letter-spacing: $letterSpacing;
   color: $color;
-  @include adaptive-font($fontSizes[]);
-  @include adaptive-lineHeight($lineHeights[]);
+  @include adaptive-font(16, 89);
+  @include adaptive-lineHeight(24, 97);
 }
 
 @mixin text($color: rgba(var(--backDarkColor), 1)) {
