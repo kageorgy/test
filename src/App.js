@@ -1,4 +1,3 @@
-import logo from "./logo.svg"
 import "./styles/common.scss"
 
 function App() {
@@ -6,13 +5,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>test</h1>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
+        <p style={{ fontSize: "89px", lineHeight: "95px" }}>test2</p>
       </header>
     </div>
   )

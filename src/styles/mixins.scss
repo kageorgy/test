@@ -33,47 +33,35 @@
   mask-position: center;
 }
 
-// Typography Mixins
-@mixin adaptive-font($mobSize, $pcSize) {
-  $addSize: $pcSize - $mobSize;
-  $maxWidth: $maxWidth - 320;
-  font-size: calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth}));
+//// Typography Mixins
+@mixin adaptive-font($mobFontSize, $pcFontSize) {
+  font-size: clamp(#{$mobFontSize + px}, (1rem + 5vw), #{$pcFontSize + px});
 }
 
-@mixin adaptive-lineHeight($pcSize, $mobSize) {
-  $addSize: $pcSize - $mobSize;
-  $maxWidth: $maxWidth - 320;
-  line-height: calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth}));
+@mixin adaptive-lineHeight($mobLineHeight, $pcLineHeight) {
+  line-height: clamp(#{$mobLineHeight + px}, (1rem + 5vw), #{$pcLineHeight + px});
 }
-/// Униварсальный mixin для заголовка h1
-/// {
-/// @param {string} $fontFamily
-///   Принимает значение для свойства font-family.
-///   Для переопеределения использовать переменные из /variables.scss
-///   По умолчанию имеет значение — $font-default.
-/// @param {string} $fontWeight
-///   Принимает значение для свойства font-weight
-///   По умолчанию имеет значение — $baseFontWeight.
-/// @param {string} $letterSpacing
-///   Принимает значение для свойства letter-spacingm
-///   По умолчанию имеет значение — $baseLetterSpacing
-/// @param {string} $color
-///   Принимает значение для свойства color
-///   Для переопеределения использовать переменные из /variables.scss
-///   По умолчанию имеет значение — $baseColor
-/// }
+
 @mixin h1(
   $fontFamily: $font-default,
   $fontWeight: $baseFontWeight,
+  $fontSizes: (
+    $mobFontSize,
+    $pcFontSize
+  ),
+  $lineHeights: (
+    $mobLineHeight,
+    $pcLineHeight
+  ),
   $letterSpacing: $baseLetterSpacing,
   $color: $baseColor
 ) {
   font-family: $fontFamily;
   font-weight: $fontWeight;
   letter-spacing: $letterSpacing;
-  @include adaptive-font(16, 89);
-  @include adaptive-lineHeight(22, 91);
   color: $color;
+  @include adaptive-font($fontSizes[]);
+  @include adaptive-lineHeight($lineHeights[]);
 }
 
 @mixin text($color: rgba(var(--backDarkColor), 1)) {
